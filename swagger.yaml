@@ -1,0 +1,194 @@
+openapi: 3.0.0
+info:
+  title: Takeat Integration
+  version: 1.0.0
+  description: an OpenAPI REST descriptor
+paths:
+  /public/omni/orders:
+    post:
+      parameters: []
+      responses:
+        '200':
+          description: Operation Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMsg'
+        '400':
+          description: Operation Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMsg'
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderData'
+    put:
+      parameters: []
+      responses:
+        '200':
+          description: Operation Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessMsg'
+        '400':
+          description: Operation Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorMsg'
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateOrderData'
+components:
+  schemas:
+    OrderData:
+      type: object
+      properties:
+        id:
+          type: string
+          description: id único do pedido na Omni
+        paid:
+          type: boolean
+          description: informa se o pedido foi pago ou não, deve estar acompanhado do pagamento
+        total:
+          type: number
+          description: soma dos preços dos itens/produtos do pedido
+        delivery_price:
+          type: number
+          description: taxa de entrega cobrado pelo restaurante
+        total_delivery_price:
+          type: number
+          description: total + total_delivery_price
+        user_change:
+          type: number
+          description: troco do cliente, caso o pagamento seja em dinheiro
+        restaurant_id:
+          type: string
+          description: código único do restauante na Omni
+        buyer:
+          $ref: '#/components/schemas/Buyer'
+        payment:
+          $ref: '#/components/schemas/Payment'
+        order:
+          type: array
+          items:
+            $ref: '#/components/schemas/Product'
+    Buyer:
+      type: object
+      properties:
+        id:
+          type: string
+          description: id único do cliente na Omni
+        phone:
+          type: string
+          description: telefone do cliente
+        name:
+          type: string
+          description: telefone do cliente
+        country:
+          type: string
+          description: país... normalmente BR
+        state:
+          type: string
+          description: estado... ES, RJ, SP e etc.
+        city:
+          type: string
+          description: cidade... Vitória, Niterói, Rio de Janeiro, São Paulo e etc
+        neighborhood:
+          type: string
+          description: bairro... Jardim da Penha, Bangu e etc
+        number:
+          type: number
+          description: número da residência
+        zip_code:
+          type: string
+          description: código postal (CEP)
+        complement:
+          type: string
+          description: complemento do endereço
+        reference:
+          type: string
+          description: referência do endereço
+    Payment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: nome ou bandeira do pagamento, Pix, Mastercard crédito, etc.
+        value:
+          type: number
+          description: valor pago
+    Product:
+      type: object
+      properties:
+        sku:
+          type: string
+          description: SKU do produto
+        price:
+          type: number
+          description: preço unitário do produto na Omni
+        amount:
+          type: number
+          description: quantidade vendida deste produto
+        observation:
+          type: string
+          description: anotação/observação do cliente para o produto
+        weight:
+          type: number
+          description: massa em gramas informado pelo cliente para o produto, se for o caso
+        complements:
+          description: complementos do produto
+          type: array
+          items:
+            $ref: '#/components/schemas/Complement'
+    Complement:
+      type: object
+      properties:
+        sku:
+          type: string
+          description: SKU do complemento
+        price:
+          type: number
+          description: preço unitário do complemento na Omni
+        amount:
+          type: number
+          description: quantidade vendida deste complemento
+    UpdateOrderData:
+      type: object
+      properties:
+        id:
+          type: string
+          description: id único do pedido na Omni
+        restaurant_id:
+          type: string
+          description: id único do restaurante na Omni
+        status:
+          type: string
+          enum: ['accepted', 'ready', 'finished', 'canceled']
+          description: novo estado do pedido
+    SuccessMsg:
+      type: object
+      properties:
+        success:
+          type: boolean
+        msg:
+          type: string
+    ErrorMsg:
+      type: object
+      properties:
+        status:
+          type: string
+        message:
+          type: string
+        errorType:
+          type: string
