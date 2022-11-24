@@ -14,7 +14,7 @@ paths:
       summary: Cria novos pedidos
       description: |
         Endpoint responsável por criar pedidos.\
-        Exemplo de body pode ser encontrado [aqui](felipe-aquino.gihub.com/omni/example.json).
+        Exemplo de body pode ser encontrado [aqui](/example.json).
       parameters: []
       responses:
         '200':
