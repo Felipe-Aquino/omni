@@ -28,6 +28,8 @@ paths:
             Operation Response \
             \
             Possíveis errorTypes:
+              - **duplicated_order_id**: Já existe um pedido com mesmo id no restaurante
+              - **invalid_product_complement**: Existe um complemento não associado a um dos produtos
               - **invalid_buyer**: Faltando nome ou telefone do cliente
               - **restaurant_not_found**: Restaurante não foi encontrado, id do restaurante é inválido
               - **order_empty**: Array order está vazio
