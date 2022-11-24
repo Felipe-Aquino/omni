@@ -1,0 +1,61 @@
+{
+  "id": "omni-order-4",
+  "order": [
+    {
+      "sku": "sku-burguer",
+      "price": "20.00",
+      "amount": 1,
+      "observation": "quero talheres",
+      "complements": [
+        {
+          "sku": "sku-bacon",
+          "price": "3.00",
+          "amount": 1
+        },
+        {
+          "sku": "sku-cheddar",
+          "price": "2.00",
+          "amount": 1
+        }
+      ],
+      "use_weight": false,
+      "weight": null
+    },
+    {
+      "sku": "sku-refri",
+      "price": "4.00",
+      "amount": 1,
+      "observation": "",
+      "complements": [],
+      "use_weight": false,
+      "weight": null
+    }
+  ],
+  "buyer": {
+    "id": "omni-buyer-1",
+    "phone": "2799999999",
+    "name": "João", 
+    "country": "BR",
+    "state": "ES",
+    "city": "Vitória",
+    "neighborhood": "Jardim da Penha",
+    "street": "Rua X",
+    "number": "1",
+    "complement": "Apt 100",
+    "reference": "duas ruas atras",
+    "zip_code": "20000-001"
+  },
+  "payment": {
+    "id": 7,
+    "name": "Mastercard Crédito",
+    "value": "39.00"
+  },
+  "with_withdrawal":false,
+  "paid": true,
+  "total": "29.00",
+  "delivery_price": "10.00",
+  "total_delivery_price": "29.00",
+  "delivery_time": 20,
+  "user_change": 0,
+  "restaurant_id": "teste-omni-id"
+}

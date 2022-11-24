@@ -3,9 +3,18 @@ info:
   title: Takeat Integration
   version: 1.0.0
   description: an OpenAPI REST descriptor
+servers:
+  - url: https://testbackend.takeat.app
+    description: Servidor de testes
+  - url: https://backend.takeat.app
+    description: Servidor de produção
 paths:
   /public/omni/orders:
     post:
+      summary: Cria novos pedidos
+      description: |
+        Endpoint responsável por criar pedidos.\
+        Exemplo de body pode ser encontrado [aqui](felipe-aquino.gihub.com/omni/example.json).
       parameters: []
       responses:
         '200':
@@ -27,6 +36,11 @@ paths:
             schema:
               $ref: '#/components/schemas/OrderData'
     put:
+      summary: Atualiza o estado de um pedido
+      description: |
+        Atualiza o estado de um pedido.\
+        Os estados possíveis são accepted, ready, finished ou canceled, seguindo essa ordem prioridade. \
+        Por exemplo, se um pedido de estado **finished** e não pode ser alterado para **accepted**.
       parameters: []
       responses:
         '200':
